@@ -33,7 +33,6 @@ soft line break
 markdown = st.text_area('Enter Markdown', value=EXAMPLE_MARKDOWN, height=200)
 
 st.sidebar.markdown('### Markdown Features')
-st.selectbox
 
 md_converter = Markdown(extensions=[EscapedNewLineToLinebreakExtension()])
 

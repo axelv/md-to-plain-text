@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "html-to-plain-text"
+name = "md-to-plain-text"
 version = "0.1.0"
 description = ""
 authors = ["Axel Vanraes <axel.vanraes@tiro.health>"]
