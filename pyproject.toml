@@ -6,7 +6,7 @@ authors = ["Axel Vanraes <axel.vanraes@tiro.health>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.9.18"
 streamlit = "^1.31.1"
 markdown = "^3.5.2"
 beautifulsoup4 = "^4.12.3"
