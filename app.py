@@ -2,40 +2,25 @@ import re
 import streamlit as st
 import html2text
 from bs4 import BeautifulSoup
-from md_to_plain_text.extensions import EscapedNewLineToLinebreakExtension
 from markdown import Markdown
+from md_to_plain_text.extensions import EscapedNewLineToLinebreakExtension
+from md_to_plain_text.example_cases import EXAMPLES
+
 
 st.title('Markdown → HTML → Plain Text')
 st.text('Experimenting with conversion of markdown to HTML and exporting plain text')
-EXAMPLE_MARKDOWN = """
-# Header 1
-
-some line of text
-
-another line of tekst with a [link](https://www.streamlit.io)
-
-A line of text with a\
-soft line break
-
-- Unordered list item 1
-
-- Unordered list item 2
-
-- Unordered list item 3
-- Unordered list item 4
-
-1. Ordered list item 1
-2. Ordered list item 2
-
-3. Ordered list item 3
-
-"""
-markdown = st.text_area('Enter Markdown', value=EXAMPLE_MARKDOWN, height=200)
 
 st.sidebar.markdown('### Markdown Features')
+st.sidebar.markdown('### Examples')
+example_key = st.selectbox('Select an example', list(EXAMPLES.keys()))
+if example_key:
+    example_case = EXAMPLES[example_key].read_text()
+else:
+    example_case = ""
+
+markdown = st.text_area('Enter Markdown', value=example_case, height=200)
 
 md_converter = Markdown(extensions=[EscapedNewLineToLinebreakExtension()])
-
 ## Disable markdown features based on user input
 if not st.sidebar.checkbox('Header'):
     md_converter.parser.blockprocessors.deregister('hashheader')
