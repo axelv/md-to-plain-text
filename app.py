@@ -13,7 +13,7 @@ st.text('Experimenting with conversion of markdown to HTML and exporting plain t
 st.sidebar.markdown('### Markdown Features')
 st.sidebar.markdown('### Examples')
 example_key = st.selectbox('Select an example', list(EXAMPLES.keys()))
-if example_key:
+if example_key in EXAMPLES:
     example_case = EXAMPLES[example_key].read_text()
 else:
     example_case = ""
