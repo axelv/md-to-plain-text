@@ -25,14 +25,34 @@ md_converter = Markdown(extensions=[EscapedNewLineToLinebreakExtension()])
 if not st.sidebar.checkbox('Header'):
     md_converter.parser.blockprocessors.deregister('hashheader')
 
-if not st.sidebar.checkbox('Blockquote'):
-    md_converter.parser.blockprocessors.deregister('quote')
 
 if not st.sidebar.checkbox('Ordered List'):
     md_converter.parser.blockprocessors.deregister('olist')
 
 if not st.sidebar.checkbox('Unordered List'):
     md_converter.parser.blockprocessors.deregister('ulist')
+
+if not st.sidebar.checkbox('Horizontal Rule'):
+    md_converter.parser.blockprocessors.deregister('hr')
+
+if not st.sidebar.checkbox('Setext-style Headers'):
+    md_converter.parser.blockprocessors.deregister('setextheader')
+
+if not st.sidebar.checkbox('Indent'):
+    md_converter.parser.blockprocessors.deregister('indent')
+
+if not st.sidebar.checkbox('Blockquote',True):
+    md_converter.parser.blockprocessors.deregister('quote')
+
+if not st.sidebar.checkbox('Code Block', True):
+    md_converter.parser.blockprocessors.deregister('code')
+
+if not st.sidebar.checkbox('Empty Blocks',True):
+    md_converter.parser.blockprocessors.deregister('empty')
+
+if not st.sidebar.checkbox('Paragraph', value=True):
+    md_converter.parser.blockprocessors.deregister('paragraph')
+    
 
 # do markdown conversion
 html = md_converter.convert(markdown)
