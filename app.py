@@ -3,6 +3,7 @@ import streamlit as st
 import html2text
 from bs4 import BeautifulSoup
 from markdown import Markdown
+from md_to_plain_text.html_to_plain_text import convert_html_to_plain_text
 from md_to_plain_text.extensions import EscapedNewLineToLinebreakExtension
 from md_to_plain_text.example_cases import EXAMPLES
 
@@ -52,10 +53,11 @@ if not st.sidebar.checkbox('Empty Blocks',True):
 
 if not st.sidebar.checkbox('Paragraph', value=True):
     md_converter.parser.blockprocessors.deregister('paragraph')
-    
 
+bs = BeautifulSoup(markdown, 'html.parser')
 # do markdown conversion
 html = md_converter.convert(markdown)
+
 
 
 with st.expander('HTML'):
@@ -73,7 +75,7 @@ html2text.config.BODY_WIDTH = 0
 html2text.config.SINGLE_LINE_BREAK = True
 
 # do html to plain text conversion
-plaintext = html2text.html2text(html)
+plaintext = convert_html_to_plain_text(html)
 
 # add an escaped newline character for visualisation of the 'characters' only
 escaped_plain_text = re.sub('\n$', '\\n\n', plaintext)
