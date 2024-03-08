@@ -42,10 +42,10 @@ if not st.sidebar.checkbox('Setext-style Headers'):
 if not st.sidebar.checkbox('Indent'):
     md_converter.parser.blockprocessors.deregister('indent')
 
-if not st.sidebar.checkbox('Blockquote',True):
+if not st.sidebar.checkbox('Blockquote'):
     md_converter.parser.blockprocessors.deregister('quote')
 
-if not st.sidebar.checkbox('Code Block', True):
+if not st.sidebar.checkbox('Code Block'):
     md_converter.parser.blockprocessors.deregister('code')
 
 if not st.sidebar.checkbox('Empty Blocks',True):
@@ -53,6 +53,15 @@ if not st.sidebar.checkbox('Empty Blocks',True):
 
 if not st.sidebar.checkbox('Paragraph', value=True):
     md_converter.parser.blockprocessors.deregister('paragraph')
+
+if not st.sidebar.checkbox('Styling'):
+    md_converter.inlinePatterns.deregister('em_strong')
+
+if not st.sidebar.checkbox('Backtick'):
+    md_converter.inlinePatterns.deregister('backtick')
+
+
+
 
 bs = BeautifulSoup(markdown, 'html.parser')
 # do markdown conversion
