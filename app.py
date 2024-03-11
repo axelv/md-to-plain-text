@@ -1,6 +1,5 @@
 import re
 import streamlit as st
-import html2text
 from bs4 import BeautifulSoup
 from markdown import Markdown
 from md_to_plain_text.html_to_plain_text import convert_html_to_plain_text
@@ -78,10 +77,6 @@ with st.expander('HTML'):
 
     # render html
     st.write(html, unsafe_allow_html=True)
-
-# configure html2text
-html2text.config.BODY_WIDTH = 0
-html2text.config.SINGLE_LINE_BREAK = True
 
 # do html to plain text conversion
 plaintext = convert_html_to_plain_text(html)
