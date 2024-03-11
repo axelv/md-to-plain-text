@@ -8,8 +8,6 @@ def convert_html_to_plain_text(html: str) -> str:
     for br in bs4.find_all("br"):
         br.replace_with("\n")
 
-    # replace all <p> tags with empty string
-    for p in bs4.find_all("p"):
-        p.replace_with("")
+    # replace all <p> tags with a \n
 
-    return bs4.get_text()
+    return bs4.get_text("\n")
